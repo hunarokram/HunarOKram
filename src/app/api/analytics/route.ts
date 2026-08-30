@@ -18,10 +18,11 @@ export const GET = withErrorHandler(async () => {
   thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
   const thirtyDaysAgoStr = thirtyDaysAgo.toISOString().split('T')[0];
 
-  const dailyViews = await AnalyticsDaily.find({
+  const filter: any = {
     organizerId: organizer._id,
     date: { $gte: thirtyDaysAgoStr }
-  } as any).sort({ date: 1 });
+  };
+  const dailyViews = await (AnalyticsDaily as any).find(filter).sort({ date: 1 });
 
   // Fill in missing dates with 0 views
   const chartData = [];

@@ -14,8 +14,9 @@ export async function POST(req: NextRequest) {
 
     const today = new Date().toISOString().split('T')[0];
 
-    await AnalyticsDaily.updateOne(
-      { organizerId: organizer._id, date: today } as any,
+    const filter: any = { organizerId: organizer._id, date: today };
+    await (AnalyticsDaily as any).updateOne(
+      filter,
       { $inc: { views: 1 } },
       { upsert: true }
     );

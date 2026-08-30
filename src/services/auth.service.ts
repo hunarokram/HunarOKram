@@ -1,7 +1,7 @@
 import { userRepository } from '@/repositories';
 import { hashPassword, verifyPassword } from '@/lib/auth/password';
 import { createSession, clearSessionCookie } from '@/lib/auth/session';
-import { ConflictError, UnauthorizedError, BadRequestError } from '@/lib/errors/errors';
+import { ConflictError, UnauthorizedError, ValidationError } from '@/lib/errors/errors';
 import { z } from 'zod';
 import { loginSchema, registerSchema } from '@/schemas/auth.schema';
 import { requireAuth } from '@/lib/auth/guard';
@@ -49,15 +49,15 @@ export class AuthService {
 
   async verifyOtp(email: string, code: string) {
     const user = await userRepository.findByEmail(email);
-    if (!user) throw new BadRequestError('User not found');
+    if (!user) throw new ValidationError('User not found');
     
     if (user.emailVerified) return { alreadyVerified: true };
     
     if (user.verificationCode !== code) {
-      throw new BadRequestError('Invalid verification code');
+      throw new ValidationError('Invalid verification code');
     }
     if (user.verificationExpiresAt && user.verificationExpiresAt < new Date()) {
-      throw new BadRequestError('Verification code expired');
+      throw new ValidationError('Verification code expired');
     }
 
     await userRepository.update(user._id.toString(), {
@@ -74,8 +74,8 @@ export class AuthService {
 
   async resendOtp(email: string) {
     const user = await userRepository.findByEmail(email);
-    if (!user) throw new BadRequestError('User not found');
-    if (user.emailVerified) throw new BadRequestError('Email already verified');
+    if (!user) throw new ValidationError('User not found');
+    if (user.emailVerified) throw new ValidationError('Email already verified');
 
     const otp = generateOTP();
     const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
@@ -110,14 +110,14 @@ export class AuthService {
 
   async verifyEmailChange(userId: string, code: string) {
     const user = await userRepository.findById(userId);
-    if (!user) throw new BadRequestError('User not found');
-    if (!user.pendingEmail) throw new BadRequestError('No pending email change request');
+    if (!user) throw new ValidationError('User not found');
+    if (!user.pendingEmail) throw new ValidationError('No pending email change request');
     
     if (user.verificationCode !== code) {
-      throw new BadRequestError('Invalid verification code');
+      throw new ValidationError('Invalid verification code');
     }
     if (user.verificationExpiresAt && user.verificationExpiresAt < new Date()) {
-      throw new BadRequestError('Verification code expired');
+      throw new ValidationError('Verification code expired');
     }
 
     await userRepository.update(userId, {
