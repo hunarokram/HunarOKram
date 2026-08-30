@@ -32,7 +32,7 @@ export const GET = withErrorHandler(async () => {
     const d = new Date(thirtyDaysAgo);
     d.setDate(d.getDate() + i);
     const dateStr = d.toISOString().split('T')[0];
-    const record = dailyViews.find(v => v.date === dateStr);
+    const record = dailyViews.find((v: any) => v.date === dateStr);
     const views = record ? record.views : 0;
     
     totalViews += views;

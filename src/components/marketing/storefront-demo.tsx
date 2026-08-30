@@ -94,7 +94,7 @@ const THEMES = [
 export function StorefrontDemo() {
   const [activeThemeId, setActiveThemeId] = React.useState('terracotta');
   const activeTheme = THEMES.find(t => t.id === activeThemeId) || THEMES[0];
-  const c = activeTheme.colors;
+  const c = activeTheme!.colors;
 
   return (
     <section className="py-24 md:py-32 bg-white border-y border-[#f0ebe1]">

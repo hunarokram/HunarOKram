@@ -1,4 +1,4 @@
-import { userRepository } from '@/repositories';
+import { userRepository, organizerRepository } from '@/repositories';
 import { hashPassword, verifyPassword } from '@/lib/auth/password';
 import { createSession, clearSessionCookie } from '@/lib/auth/session';
 import { ConflictError, UnauthorizedError, ValidationError } from '@/lib/errors/errors';
