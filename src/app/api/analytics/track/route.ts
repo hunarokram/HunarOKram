@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     const today = new Date().toISOString().split('T')[0];
 
     await AnalyticsDaily.updateOne(
-      { organizerId: organizer._id, date: today },
+      { organizerId: organizer._id, date: today } as any,
       { $inc: { views: 1 } },
       { upsert: true }
     );

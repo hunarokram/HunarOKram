@@ -21,7 +21,7 @@ export const GET = withErrorHandler(async () => {
   const dailyViews = await AnalyticsDaily.find({
     organizerId: organizer._id,
     date: { $gte: thirtyDaysAgoStr }
-  }).sort({ date: 1 });
+  } as any).sort({ date: 1 });
 
   // Fill in missing dates with 0 views
   const chartData = [];
