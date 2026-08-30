@@ -2,7 +2,7 @@
  * Application-wide constants
  */
 
-export const APP_NAME = 'AnotherIdea';
+export const APP_NAME = 'HunarOKram';
 
 export const PAGINATION = {
   DEFAULT_PAGE_SIZE: 20,

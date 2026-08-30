@@ -172,7 +172,7 @@ export default function VisualOnboarding() {
                 <div>
                   <label className="block text-sm font-medium text-[#1a1a1a] mb-2">Your unique link</label>
                   <div className="flex items-center bg-white border border-[#e5e5e5] rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#d45f2a] transition-all">
-                    <span className="pl-4 text-[#a3a3a3] text-sm">anotheridea.com/</span>
+                    <span className="pl-4 text-[#a3a3a3] text-sm">hunarokram.vercel.app/</span>
                     <input
                       {...register('slug')}
                       placeholder="studioclay"
@@ -213,7 +213,7 @@ export default function VisualOnboarding() {
           {/* Mockup Body */}
           <div className="p-6 flex-1 bg-[#faf9f7]">
             <h2 className="text-xl font-serif text-[#1a1a1a] mb-1">{currentName || 'Your Name'}</h2>
-            <p className="text-[#a3a3a3] text-xs mb-6">anotheridea.com/{currentSlug || 'yourname'}</p>
+            <p className="text-[#a3a3a3] text-xs mb-6">hunarokram.vercel.app/{currentSlug || 'yourname'}</p>
             
             <div className="space-y-4">
               {[1, 2].map((i) => (

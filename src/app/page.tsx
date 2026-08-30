@@ -29,7 +29,7 @@ export default function LandingPage() {
 
             <div className="pt-8 w-full max-w-md mx-auto">
               <form action="/register" method="GET" className="relative flex items-center bg-white rounded-full p-2 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#e5e5e5] hover:border-[#d45f2a] transition-colors group">
-                <span className="pl-4 text-sm font-medium text-[#a3a3a3]">anotheridea.com/</span>
+                <span className="pl-4 text-sm font-medium text-[#a3a3a3]">hunarokram.vercel.app/</span>
                 <input 
                   type="text" 
                   name="slug"
@@ -254,7 +254,7 @@ export default function LandingPage() {
           </h2>
           <div className="w-full max-w-lg mx-auto">
             <form action="/register" method="GET" className="relative flex items-center bg-white rounded-full p-2 shadow-xl shadow-[#d45f2a]/5 border border-[#e5e5e5] focus-within:border-[#d45f2a] transition-all">
-              <span className="pl-6 text-base font-medium text-[#a3a3a3]">anotheridea.com/</span>
+              <span className="pl-6 text-base font-medium text-[#a3a3a3]">hunarokram.vercel.app/</span>
               <input 
                 type="text" 
                 name="slug"
