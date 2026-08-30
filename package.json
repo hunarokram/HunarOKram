@@ -13,7 +13,6 @@
     "pages:deploy": "npm run pages:build && npx wrangler pages deploy .vercel/output/static"
   },
   "dependencies": {
-    "@cloudflare/next-on-pages": "^1.13.16",
     "@hookform/resolvers": "^5.9.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@tanstack/react-query": "^5.101.4",
