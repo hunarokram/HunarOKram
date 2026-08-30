@@ -1,0 +1,17 @@
+export type Plan = 'free' | 'creator' | 'studio' | 'pro';
+export type GlobalRole = 'user' | 'admin' | 'organizer';
+export type OrganizerRole = 'owner' | 'staff';
+export type ExperienceStatus = 'draft' | 'published' | 'archived' | 'past';
+export type BookingStatus = 'pending' | 'confirmed' | 'rejected' | 'cancelled' | 'completed' | 'no_show';
+export type PaymentStatus = 'pending' | 'paid' | 'refunded' | 'partially_refunded' | 'failed';
+export type ScheduleStatus = 'open' | 'full' | 'cancelled' | 'completed';
+export type ReviewStatus = 'pending' | 'published' | 'hidden' | 'flagged';
+export type OrganizerStatus = 'onboarding' | 'active' | 'suspended';
+export type SubscriptionStatus = 'active' | 'past_due' | 'cancelled' | 'trialing';
+export type CancellationPolicy = 'flexible' | 'moderate' | 'strict';
+export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced' | 'all_levels';
+export type LocationType = 'physical' | 'online' | 'hybrid';
+export type NotificationChannel = 'email' | 'whatsapp' | 'sms' | 'in_app';
+export type CouponDiscountType = 'percentage' | 'fixed';
+export type PriceType = 'per_person' | 'flat_rate';
+export type SortDirection = 'asc' | 'desc';

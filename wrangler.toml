@@ -1,0 +1,21 @@
+name = "experience-booking"
+compatibility_date = "2024-09-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+[vars]
+NEXT_PUBLIC_PLATFORM_DOMAIN = "localhost:3000"
+
+# Bindings will be configured per environment
+# [env.production.vars]
+# NEXT_PUBLIC_PLATFORM_DOMAIN = "yourdomain.com"
+
+# R2 bucket binding (uncomment when ready)
+# [[r2_buckets]]
+# binding = "R2_BUCKET"
+# bucket_name = "experience-booking-files"
+
+# Queue binding (uncomment when ready)
+# [[queues.producers]]
+# binding = "NOTIFICATION_QUEUE"
+# queue = "notifications"

@@ -1,0 +1,220 @@
+@import "tailwindcss";
+@import "tailwindcss/theme" theme(reference);
+
+/*
+ * ============================================================
+ * DESIGN TOKENS — Creator-First Experience Booking SaaS
+ * ============================================================
+ * Creative, premium, modern, trustworthy.
+ * Warm tones, generous spacing, smooth animations.
+ * ============================================================
+ */
+
+@theme {
+  /* ---- Brand Colors ---- */
+  --color-brand-50: #fef7f2;
+  --color-brand-100: #fdeee4;
+  --color-brand-200: #fbd9c4;
+  --color-brand-300: #f7be9a;
+  --color-brand-400: #f29b6b;
+  --color-brand-500: #eb7a42;
+  --color-brand-600: #d45f2a;
+  --color-brand-700: #b04a22;
+  --color-brand-800: #8d3d20;
+  --color-brand-900: #73351e;
+  --color-brand-950: #3e190d;
+
+  /* ---- Warm Neutral (for backgrounds, text) ---- */
+  --color-warm-50: #faf9f7;
+  --color-warm-100: #f3f1ed;
+  --color-warm-200: #e8e4dd;
+  --color-warm-300: #d5cfc4;
+  --color-warm-400: #b8ae9e;
+  --color-warm-500: #9f9382;
+  --color-warm-600: #8a7d6d;
+  --color-warm-700: #73685b;
+  --color-warm-800: #61574d;
+  --color-warm-900: #524a42;
+  --color-warm-950: #2c2722;
+
+  /* ---- Accent (teal/green for CTAs, success) ---- */
+  --color-accent-50: #effcf6;
+  --color-accent-100: #d8f7e8;
+  --color-accent-200: #b4eed5;
+  --color-accent-300: #81dfba;
+  --color-accent-400: #4dc89b;
+  --color-accent-500: #28ad80;
+  --color-accent-600: #1a8c68;
+  --color-accent-700: #167056;
+  --color-accent-800: #155945;
+  --color-accent-900: #134a3a;
+  --color-accent-950: #082921;
+
+  /* ---- Semantic Colors ---- */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* ---- Typography ---- */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+
+  /* ---- Font Sizes (rem-based) ---- */
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: 0.875rem;
+
+  /* ---- Border Radius ---- */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-full: 9999px;
+
+  /* ---- Shadows (warm-toned) ---- */
+  --shadow-xs: 0 1px 2px 0 rgba(60, 44, 30, 0.04);
+  --shadow-sm: 0 1px 3px 0 rgba(60, 44, 30, 0.06), 0 1px 2px -1px rgba(60, 44, 30, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(60, 44, 30, 0.07), 0 2px 4px -2px rgba(60, 44, 30, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(60, 44, 30, 0.08), 0 4px 6px -4px rgba(60, 44, 30, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(60, 44, 30, 0.08), 0 8px 10px -6px rgba(60, 44, 30, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(60, 44, 30, 0.16);
+
+  /* ---- Animation Durations ---- */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+
+  /* ---- Z-Index Scale ---- */
+  --z-dropdown: 50;
+  --z-sticky: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+}
+
+/*
+ * ============================================================
+ * BASE STYLES
+ * ============================================================
+ */
+
+@layer base {
+  :root {
+    --background: var(--color-warm-50);
+    --foreground: var(--color-warm-950);
+    --card: #ffffff;
+    --card-foreground: var(--color-warm-900);
+    --popover: #ffffff;
+    --popover-foreground: var(--color-warm-900);
+    --primary: var(--color-brand-600);
+    --primary-foreground: #ffffff;
+    --secondary: var(--color-warm-100);
+    --secondary-foreground: var(--color-warm-800);
+    --muted: var(--color-warm-100);
+    --muted-foreground: var(--color-warm-500);
+    --accent: var(--color-accent-600);
+    --accent-foreground: #ffffff;
+    --destructive: var(--color-error);
+    --destructive-foreground: #ffffff;
+    --border: var(--color-warm-200);
+    --input: var(--color-warm-200);
+    --ring: var(--color-brand-500);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-warm-50 text-warm-950 font-sans;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Focus ring — visible, accessible, consistent */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500 rounded-sm;
+  }
+
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Selection styling */
+  ::selection {
+    @apply bg-brand-100 text-brand-900;
+  }
+
+  /* Scrollbar styling (subtle) */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-warm-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-warm-400;
+  }
+}
+
+/*
+ * ============================================================
+ * UTILITY CLASSES
+ * ============================================================
+ */
+
+@layer utilities {
+  /* Smooth page transitions */
+  .page-enter {
+    animation: page-enter 300ms ease-out forwards;
+  }
+
+  @keyframes page-enter {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Container with comfortable max-width */
+  .container-tight {
+    @apply mx-auto max-w-4xl px-4 sm:px-6;
+  }
+
+  .container-wide {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Glass effect for overlays */
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20;
+  }
+
+  /* Hide scrollbar but allow scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
