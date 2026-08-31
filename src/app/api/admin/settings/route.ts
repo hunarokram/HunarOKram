@@ -4,7 +4,7 @@ import { requireAuth } from '@/lib/auth/guard';
 import { userRepository } from '@/repositories';
 import { apiSuccess, apiError, withErrorHandler } from '@/middleware/api-middleware';
 
-export const PUT = withErrorHandler(async (request: NextRequest) => {
+export const PUT = withErrorHandler(async (request: any) => {
   const auth = await requireAuth();
   const user = await userRepository.findById(auth.userId);
   
