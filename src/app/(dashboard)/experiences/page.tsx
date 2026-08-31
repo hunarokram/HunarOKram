@@ -50,12 +50,12 @@ export default function ExperiencesPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto space-y-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight">Experiences</h1>
           <p className="text-muted-foreground mt-1">Manage your experiences and their schedules.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           {organizer && (
             <Button variant="outline" onClick={() => window.open(`/${organizer.slug}`, '_blank')}>
               View Storefront

@@ -320,9 +320,9 @@ export default function SettingsPage() {
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="p-3 rounded-xl bg-blue-50 border border-blue-100 text-xs text-blue-700">
+            <div className="p-3 rounded-xl bg-blue-50 border border-blue-100 text-xs text-blue-700 break-words">
               💡 In your Razorpay Dashboard → Webhooks, set the URL to:{' '}
-              <code className="font-mono bg-blue-100 px-1 rounded">https://yourdomain.com/api/webhooks/razorpay</code>
+              <code className="font-mono bg-blue-100 px-1 rounded break-all inline-block mt-1">https://yourdomain.com/api/webhooks/razorpay</code>
             </div>
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-warm-800">Razorpay Key ID</label>
