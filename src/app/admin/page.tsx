@@ -21,11 +21,16 @@ export default function AdminDashboard() {
     }
   };
 
+  const [settings, setSettings] = useState<any>(null);
+  const [savingSettings, setSavingSettings] = useState(false);
+  const [settingsMessage, setSettingsMessage] = useState('');
+
   const fetchOrganizersAndStats = async () => {
     try {
-      const [res, statsRes] = await Promise.all([
+      const [res, statsRes, settingsRes] = await Promise.all([
         fetch('/api/admin/organizers'),
-        fetch('/api/admin/stats')
+        fetch('/api/admin/stats'),
+        fetch('/api/settings')
       ]);
 
       if (!res.ok) {
@@ -37,15 +42,42 @@ export default function AdminDashboard() {
         throw new Error('Failed to load organizers');
       }
 
-      const [data, statsData] = await Promise.all([res.json(), statsRes.json()]);
+      const [data, statsData, settingsData] = await Promise.all([res.json(), statsRes.json(), settingsRes.json()]);
       setOrganizers(data.data);
       if (statsData.success) {
         setStats(statsData.data);
+      }
+      if (settingsData.success) {
+        setSettings(settingsData.data);
       }
     } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSaveSettings = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSavingSettings(true);
+    setSettingsMessage('');
+    try {
+      const res = await fetch('/api/admin/settings', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(settings)
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSettingsMessage('Settings saved successfully!');
+        setTimeout(() => setSettingsMessage(''), 3000);
+      } else {
+        setSettingsMessage(data.error?.message || 'Failed to save');
+      }
+    } catch (err) {
+      setSettingsMessage('Error saving settings');
+    } finally {
+      setSavingSettings(false);
     }
   };
 
@@ -173,6 +205,60 @@ export default function AdminDashboard() {
           </div>
         )}
         
+        {/* Settings Panel */}
+        {settings && (
+          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm mb-8">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">Platform Configuration</h2>
+            <form onSubmit={handleSaveSettings} className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Admin UPI ID</label>
+                <input
+                  type="text"
+                  required
+                  value={settings.adminUpiId || ''}
+                  onChange={(e) => setSettings({ ...settings, adminUpiId: e.target.value })}
+                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Admin UPI Name</label>
+                <input
+                  type="text"
+                  required
+                  value={settings.adminUpiName || ''}
+                  onChange={(e) => setSettings({ ...settings, adminUpiName: e.target.value })}
+                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Subscription Price (₹)</label>
+                <input
+                  type="number"
+                  required
+                  value={settings.subscriptionPrice || ''}
+                  onChange={(e) => setSettings({ ...settings, subscriptionPrice: Number(e.target.value) })}
+                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+              </div>
+              <div className="md:col-span-3 flex items-center justify-end gap-4">
+                {settingsMessage && (
+                  <span className={`text-sm ${settingsMessage.includes('Error') || settingsMessage.includes('Failed') ? 'text-red-500' : 'text-green-600'} font-medium`}>
+                    {settingsMessage}
+                  </span>
+                )}
+                <button
+                  type="submit"
+                  disabled={savingSettings}
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 disabled:opacity-50"
+                >
+                  {savingSettings && <Loader2 className="w-4 h-4 animate-spin" />}
+                  Save Configuration
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+
         <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm whitespace-nowrap">

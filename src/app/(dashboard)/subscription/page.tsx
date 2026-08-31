@@ -4,7 +4,7 @@ import { useExperiences } from '@/hooks/use-experiences';
 import { CreditCard, Check, ShieldCheck, Zap, Loader2, X, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ImageUploader } from '@/components/ui/image-uploader';
 
 export default function SubscriptionPage() {
@@ -14,6 +14,13 @@ export default function SubscriptionPage() {
   const [showModal, setShowModal] = useState(false);
   const [screenshotUrl, setScreenshotUrl] = useState<string[]>([]);
   const [formData, setFormData] = useState({ transactionId: '', name: '', phone: '' });
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('/api/settings').then(res => res.json()).then(data => {
+      if (data.success) setSettings(data.data);
+    });
+  }, []);
 
   if (isLoadingOrg || isLoadingExp) {
     return (
@@ -130,7 +137,7 @@ export default function SubscriptionPage() {
               <div>
                 <h2 className="text-2xl font-serif text-brand-600">Creator Plan</h2>
                 <div className="mt-2 flex items-baseline gap-1">
-                  <span className="text-4xl font-bold">₹299</span>
+                  <span className="text-4xl font-bold">₹{settings?.subscriptionPrice || 299}</span>
                   <span className="text-sm text-gray-500 opacity-80">/month</span>
                 </div>
               </div>
@@ -175,15 +182,15 @@ export default function SubscriptionPage() {
             
             <div className="p-6 space-y-6">
               <div className="text-center space-y-2">
-                <p className="text-sm text-gray-600">Scan this QR Code to pay ₹299</p>
+                <p className="text-sm text-gray-600">Scan this QR Code to pay ₹{settings?.subscriptionPrice || 299}</p>
                 <div className="w-48 h-48 mx-auto bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
                   <img 
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent('upi://pay?pa=admin@upi&pn=HunarOKram&am=299&cu=INR')}`} 
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`upi://pay?pa=${settings?.adminUpiId || 'admin@upi'}&pn=${settings?.adminUpiName || 'HunarOKram'}&am=${settings?.subscriptionPrice || 299}&cu=INR`)}`} 
                     alt="Payment QR Code"
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <p className="text-xs text-gray-500">UPI ID: admin@upi</p>
+                <p className="text-xs text-gray-500">UPI ID: {settings?.adminUpiId || 'admin@upi'}</p>
               </div>
 
               <div className="space-y-3 max-h-[40vh] overflow-y-auto px-2">
