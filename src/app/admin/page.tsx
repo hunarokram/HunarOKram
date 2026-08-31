@@ -245,9 +245,9 @@ export default function AdminDashboard() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Custom QR Code Image (Optional)</label>
                 <p className="text-xs text-gray-500 mb-2">If uploaded, this will be shown instead of generating one dynamically.</p>
                 <ImageUploader 
-                  value={settings.adminQrCodeUrl ? [settings.adminQrCodeUrl] : []}
+                  images={settings.adminQrCodeUrl ? [settings.adminQrCodeUrl] : []}
                   onChange={(urls) => setSettings({ ...settings, adminQrCodeUrl: urls[0] || '' })}
-                  maxFiles={1}
+                  maxImages={1}
                 />
               </div>
               <div className="md:col-span-3 flex items-center justify-end gap-4">
