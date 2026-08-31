@@ -8,7 +8,7 @@ export const PUT = withErrorHandler(async (request: any) => {
   const auth = await requireAuth();
   const user = await userRepository.findById(auth.userId);
   
-  if (!user || user.role !== 'SUPER_ADMIN') {
+  if (!user || user.globalRole !== 'admin') {
     return apiError('UNAUTHORIZED', 'Super admin access required', 403);
   }
 
