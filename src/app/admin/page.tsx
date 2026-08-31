@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { ShieldAlert, Check, X, ShieldCheck, Loader2, LogOut } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
+import { ImageUploader } from '@/components/ui/image-uploader';
 
 export default function AdminDashboard() {
   const [organizers, setOrganizers] = useState<any[]>([]);
@@ -238,6 +239,15 @@ export default function AdminDashboard() {
                   value={settings.subscriptionPrice || ''}
                   onChange={(e) => setSettings({ ...settings, subscriptionPrice: Number(e.target.value) })}
                   className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+              </div>
+              <div className="md:col-span-3">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Custom QR Code Image (Optional)</label>
+                <p className="text-xs text-gray-500 mb-2">If uploaded, this will be shown instead of generating one dynamically.</p>
+                <ImageUploader 
+                  value={settings.adminQrCodeUrl ? [settings.adminQrCodeUrl] : []}
+                  onChange={(urls) => setSettings({ ...settings, adminQrCodeUrl: urls[0] || '' })}
+                  maxFiles={1}
                 />
               </div>
               <div className="md:col-span-3 flex items-center justify-end gap-4">

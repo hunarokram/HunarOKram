@@ -12,5 +12,6 @@ export const GET = withErrorHandler(async () => {
     adminUpiId: settings.adminUpiId,
     adminUpiName: settings.adminUpiName,
     subscriptionPrice: settings.subscriptionPrice,
+    adminQrCodeUrl: settings.adminQrCodeUrl,
   });
 });

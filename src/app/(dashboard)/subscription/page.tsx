@@ -185,7 +185,7 @@ export default function SubscriptionPage() {
                 <p className="text-sm text-gray-600">Scan this QR Code to pay ₹{settings?.subscriptionPrice || 299}</p>
                 <div className="w-48 h-48 mx-auto bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
                   <img 
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`upi://pay?pa=${settings?.adminUpiId || 'admin@upi'}&pn=${settings?.adminUpiName || 'HunarOKram'}&am=${settings?.subscriptionPrice || 299}&cu=INR`)}`} 
+                    src={settings?.adminQrCodeUrl || `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`upi://pay?pa=${settings?.adminUpiId || 'admin@upi'}&pn=${settings?.adminUpiName || 'HunarOKram'}&am=${settings?.subscriptionPrice || 299}&cu=INR`)}`} 
                     alt="Payment QR Code"
                     className="w-full h-full object-contain"
                   />

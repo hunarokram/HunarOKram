@@ -21,6 +21,7 @@ export const PUT = withErrorHandler(async (request: any) => {
     settings.adminUpiId = data.adminUpiId ?? settings.adminUpiId;
     settings.adminUpiName = data.adminUpiName ?? settings.adminUpiName;
     settings.subscriptionPrice = data.subscriptionPrice ?? settings.subscriptionPrice;
+    settings.adminQrCodeUrl = data.adminQrCodeUrl ?? settings.adminQrCodeUrl;
     await settings.save();
   }
   
@@ -29,7 +30,8 @@ export const PUT = withErrorHandler(async (request: any) => {
     settings: {
       adminUpiId: settings.adminUpiId,
       adminUpiName: settings.adminUpiName,
-      subscriptionPrice: settings.subscriptionPrice
+      subscriptionPrice: settings.subscriptionPrice,
+      adminQrCodeUrl: settings.adminQrCodeUrl
     }
   });
 });

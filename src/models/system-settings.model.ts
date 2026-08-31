@@ -4,6 +4,7 @@ export interface ISystemSettings extends Document {
   adminUpiId: string;
   adminUpiName: string;
   subscriptionPrice: number;
+  adminQrCodeUrl?: string;
 }
 
 const systemSettingsSchema = new Schema<ISystemSettings>(
@@ -11,6 +12,7 @@ const systemSettingsSchema = new Schema<ISystemSettings>(
     adminUpiId: { type: String, default: 'admin@upi' },
     adminUpiName: { type: String, default: 'HunarOKram' },
     subscriptionPrice: { type: Number, default: 299 },
+    adminQrCodeUrl: { type: String },
   },
   { timestamps: true }
 );
