@@ -17,27 +17,27 @@ export default function LandingPage() {
           <div className="absolute inset-0 bg-[#faf9f7]/60 backdrop-blur-[2px]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f7] via-transparent to-transparent" />
           
-          <div className="z-10 text-center max-w-4xl mx-auto space-y-8 flex flex-col items-center mt-12">
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif text-[#1a1a1a] tracking-tight leading-[0.9]">
+          <div className="z-10 text-center w-full max-w-4xl mx-auto space-y-6 md:space-y-8 flex flex-col items-center mt-12 px-2">
+            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-serif text-[#1a1a1a] tracking-tight leading-[1]">
               Your craft. <br className="hidden md:block" />
               <span className="italic text-[#d45f2a]">Your stage.</span>
             </h1>
             
-            <p className="text-lg md:text-2xl text-[#6b6b6b] max-w-2xl mx-auto font-light leading-relaxed">
+            <p className="text-base sm:text-lg md:text-2xl text-[#6b6b6b] max-w-2xl mx-auto font-light leading-relaxed px-4">
               The minimalist canvas for creators to host experiences, manage bookings, and own their audience.
             </p>
 
-            <div className="pt-8 w-full max-w-md mx-auto">
-              <form action="/register" method="GET" className="relative flex items-center bg-white rounded-full p-2 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#e5e5e5] hover:border-[#d45f2a] transition-colors group">
-                <span className="pl-4 text-sm font-medium text-[#a3a3a3]">hunarokram.vercel.app/</span>
+            <div className="pt-6 md:pt-8 w-full max-w-md mx-auto px-2">
+              <form action="/register" method="GET" className="relative flex items-center bg-white rounded-full p-1.5 md:p-2 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#e5e5e5] hover:border-[#d45f2a] transition-colors group">
+                <span className="pl-3 md:pl-4 text-[11px] sm:text-xs md:text-sm font-medium text-[#a3a3a3] truncate max-w-[140px] sm:max-w-none">hunarokram.vercel.app/</span>
                 <input 
                   type="text" 
                   name="slug"
                   placeholder="yourname"
-                  className="flex-1 bg-transparent border-none outline-none text-sm font-semibold text-[#1a1a1a] placeholder:text-[#d4d4d4] px-1 min-w-0 focus:ring-0"
+                  className="flex-1 bg-transparent border-none outline-none text-sm font-semibold text-[#1a1a1a] placeholder:text-[#d4d4d4] px-1 min-w-0 focus:ring-0 w-full"
                 />
-                <button type="submit" className="bg-[#1a1a1a] text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#d45f2a] transition-colors flex items-center gap-2 group-hover:shadow-lg">
-                  Begin <ArrowRight className="w-4 h-4" />
+                <button type="submit" className="bg-[#1a1a1a] text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-semibold hover:bg-[#d45f2a] transition-colors flex items-center gap-1 md:gap-2 group-hover:shadow-lg shrink-0">
+                  Begin <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
                 </button>
               </form>
             </div>
@@ -248,24 +248,24 @@ export default function LandingPage() {
         </section>
 
         {/* V. The Frictionless Catalyst */}
-        <section className="py-32 md:py-48 px-6 bg-[#faf9f7] text-center">
-          <h2 className="text-5xl md:text-7xl font-serif text-[#1a1a1a] tracking-tight mb-8">
+        <section className="py-24 md:py-48 px-4 sm:px-6 bg-[#faf9f7] text-center">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif text-[#1a1a1a] tracking-tight mb-6 md:mb-8">
             Claim your space.
           </h2>
-          <div className="w-full max-w-lg mx-auto">
-            <form action="/register" method="GET" className="relative flex items-center bg-white rounded-full p-2 shadow-xl shadow-[#d45f2a]/5 border border-[#e5e5e5] focus-within:border-[#d45f2a] transition-all">
-              <span className="pl-6 text-base font-medium text-[#a3a3a3]">hunarokram.vercel.app/</span>
+          <div className="w-full max-w-lg mx-auto px-2">
+            <form action="/register" method="GET" className="relative flex items-center bg-white rounded-full p-1.5 md:p-2 shadow-xl shadow-[#d45f2a]/5 border border-[#e5e5e5] focus-within:border-[#d45f2a] transition-all">
+              <span className="pl-3 md:pl-6 text-[11px] sm:text-sm md:text-base font-medium text-[#a3a3a3] truncate max-w-[140px] sm:max-w-none">hunarokram.vercel.app/</span>
               <input 
                 type="text" 
                 name="slug"
                 placeholder="yourname"
-                className="flex-1 bg-transparent border-none outline-none text-base font-semibold text-[#1a1a1a] placeholder:text-[#d4d4d4] px-1 min-w-0 focus:ring-0"
+                className="flex-1 bg-transparent border-none outline-none text-sm md:text-base font-semibold text-[#1a1a1a] placeholder:text-[#d4d4d4] px-1 min-w-0 focus:ring-0 w-full"
               />
-              <button type="submit" className="bg-[#d45f2a] text-white px-8 py-4 rounded-full text-base font-semibold hover:bg-[#b04a1e] transition-colors flex items-center gap-2">
-                Start Free <ArrowRight className="w-4 h-4" />
+              <button type="submit" className="bg-[#d45f2a] text-white px-4 md:px-8 py-3 md:py-4 rounded-full text-xs md:text-base font-semibold hover:bg-[#b04a1e] transition-colors flex items-center gap-1 md:gap-2 shrink-0">
+                Start Free <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
               </button>
             </form>
-            <p className="text-[#a3a3a3] text-sm mt-6">No credit card required. Setup in 60 seconds.</p>
+            <p className="text-[#a3a3a3] text-xs md:text-sm mt-6">No credit card required. Setup in 60 seconds.</p>
           </div>
         </section>
       </main>
