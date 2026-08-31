@@ -67,7 +67,7 @@ export default function VisualOnboarding() {
         ...data,
         theme: theme as any,
       });
-      router.push('/dashboard');
+      router.push('/settings');
     } catch (err: any) {
       setServerError(err.message || 'Failed to create account.');
     }
