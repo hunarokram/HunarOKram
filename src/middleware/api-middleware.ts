@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { ZodSchema, ZodError } from 'zod';
 import { AppError } from '@/lib/errors/app-error';
 import { logger } from '@/lib/logger';
+import { connectToDatabase } from '@/lib/db/connection';
 
 /** Standard API success response */
 export function apiSuccess<T>(data: T, status = 200, meta?: Record<string, unknown>) {
@@ -102,6 +103,7 @@ export function withErrorHandler(
 ) {
   return async (request: Request, context: { params: Promise<Record<string, string>> }): Promise<NextResponse> => {
     try {
+      await connectToDatabase();
       return await handler(request, context);
     } catch (error) {
       return handleApiError(error);
